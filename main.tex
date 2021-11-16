@@ -6,12 +6,42 @@
 \usepackage{graphicx}
 \usepackage{listings}
 
+
 % for table
 \usepackage{bbding}
 \usepackage{threeparttable,tabularx}
 \usepackage{booktabs}
 \newcommand{\yes}{\textcolor{green}{\CheckmarkBold}}
 \newcommand{\no}{\textcolor{red}{\XSolidBrush}}
+
+%Tamarin Code Highlighter
+\definecolor{dartmouthgreen}{rgb}{0.05, 0.5, 0.06}
+\lstdefinelanguage{Tamarin}{
+	alsoletter={-},
+	keywords=[1]{},
+	otherkeywords={[, ], --, ->, [, \t\,},
+	keywords=[2]{let, in, exists-trace},
+	keywords=[3]{rule, lemma, Ex, All, not},
+	keywords=[4]{RevDHQ},
+	keywordstyle=[1]{\color{black}\bfseries},
+	keywordstyle=[2]{\color{dartmouthgreen}\bfseries},
+	keywordstyle=[3]{\color{blue}\bfseries},
+	keywordstyle=[4]{\color{magenta}\itshape\bfseries},
+	string=[b]{'},
+	stringstyle=\color{red},
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{gray!75},
+	basicstyle=\normalfont\ttfamily,
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=b                    % sets the caption-position to bottom
+}
+
 
 \lstset{
   frame=single,
@@ -52,12 +82,31 @@
 
 \begin{frame}
 \frametitle{The Tamarin Prover}
+$\underline{\text{Idea:}}$  
+\begin{itemize}
+	\item symbolic analysis
+	\item transition system
+	\begin{itemize}
+		\item ``exists-trace'' 
+		\item ``all traces fulfill ... '' 
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{The Tamarin Prover}
+\begin{lstlisting}[language=Tamarin]
+rule reveal_dh:
+[ !DHtoReveal($I, k) ] 
+--[RevDH($I)]->       
+[ Out(k) ]   
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}
 \frametitle{IKEv2 Security Model}
 \begin{itemize}
-	\item Dolev-Yao-attacker
+	\item Dolev-Yao attacker
 \end{itemize}
 \pause
 \bigskip
@@ -84,11 +133,8 @@ $\underline{\text{Security properties:}}$
 \end{frame}
 
 \begin{frame}
-\frametitle{Modeling IKEv2}
-\end{frame}
-
-\begin{frame}
 	\frametitle{Modeling PQ-IKEv2}
+	
 \end{frame}
 
 \begin{frame}

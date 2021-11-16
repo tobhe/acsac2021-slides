@@ -1,3 +1,5 @@
+% !TeX program = xelatex
+
 \documentclass{beamer}
 
 \usepackage[utf8]{inputenc}
@@ -46,7 +48,32 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{IKEv2 Security Properties}
+\frametitle{IKEv2 Security Model}
+\begin{itemize}
+	\item Dolev-Yao-attacker
+\end{itemize}
+\pause
+\bigskip
+$\underline{\text{Security properties:}}$              
+\pause
+\begin{itemize}	
+	\item Consistency
+	\pause
+	\item Key secrecy
+	\pause
+	\item Identity Protection
+	\pause
+	\item Agreement: \smallskip
+	\pause
+	\begin{itemize}
+		\item Aliveness \textit{of Initiator and of Responder} 
+		\pause        
+		\item Weak Agreement \textit{of I. and of R.}
+		\pause
+		\item Agreement\textit{ of I. and of R.}		
+	\end{itemize}
+	
+\end{itemize}
 \end{frame}
 
 \begin{frame}

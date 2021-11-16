@@ -146,8 +146,14 @@ $\underline{\text{Security properties:}}$
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Modeling PQ-IKEv2}
+\begin{lstlisting}[language=Tamarin]
+rule reveal_dhq:
+[ !DHQtoReveal($I, k) ]
+--[RevDHQ($I)]->
+[ Out(k) ]
+\end{lstlisting}
 	
 \end{frame}
 

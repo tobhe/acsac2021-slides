@@ -6,6 +6,13 @@
 \usepackage{graphicx}
 \usepackage{listings}
 
+% for table
+\usepackage{bbding}
+\usepackage{threeparttable,tabularx}
+\usepackage{booktabs}
+\newcommand{\yes}{\textcolor{green}{\CheckmarkBold}}
+\newcommand{\no}{\textcolor{red}{\XSolidBrush}}
+
 \lstset{
   frame=single,
   basicstyle=\footnotesize\ttfamily,
@@ -86,6 +93,26 @@ $\underline{\text{Security properties:}}$
 
 \begin{frame}
 \frametitle{Result}
+\begin{table}[t]
+\resizebox{.7\textwidth}{!}{
+	\begin{tabular}{m{1.6cm}ccccc}
+		\toprule
+		& none & I eph. & R eph. & I static & R static \\
+		\midrule
+		Aliveness\_I  & \yes &  \yes  &  \yes  &   \yes   &   \no    \\
+		Aliveness\_R  & \yes &  \yes  &  \yes  &   \yes   &   \no    \\
+		\uchyph=0 Weak Agreement\_I & \yes &  \no   &  \no   &   \yes   &   \no \\
+		\uchyph=0 Weak Agreement\_R & \no &  \no   &  \no   &   \no   &   \no \\
+		Agreement\_I & \yes &  \no   &  \no   &   \yes   &   \no    \\
+		Agreement\_R & \no &  \no   &  \no   &   \no   &   \no    \\
+		Consistency   & \yes &  \yes  &  \yes  &   \yes   &   \no    \\
+		Key secrecy   & \yes &  \no   &  \no   &   \yes   &   \no    \\
+		\uchyph=0 Identity Protection  & \yes &  \no   &  \no   &   \no    &   \yes \\
+		\bottomrule
+	\end{tabular}
+}
+\caption[]{\textbf{Implications of key compromise:} Each entry indicates whether the security property of the corresponding row is achieved (\yes{}) or not (\no{}) if the key of the corresponding column is compromised. } 
+\end{table}
 \end{frame}
 
 \end{document}

@@ -6,14 +6,6 @@
 \usepackage{graphicx}
 \usepackage{listings}
 
-
-% for table
-\usepackage{bbding}
-\usepackage{threeparttable,tabularx}
-\usepackage{booktabs}
-\newcommand{\yes}{\textcolor{green}{\CheckmarkBold}}
-\newcommand{\no}{\textcolor{red}{\XSolidBrush}}
-
 %Tamarin Code Highlighter
 \definecolor{dartmouthgreen}{rgb}{0.05, 0.5, 0.06}
 \lstdefinelanguage{Tamarin}{
@@ -42,6 +34,12 @@
 	captionpos=b                    % sets the caption-position to bottom
 }
 
+% for table
+\usepackage{bbding}
+\usepackage{threeparttable,tabularx}
+\usepackage{booktabs}
+\newcommand{\yes}{\textcolor{dartmouthgreen}{\CheckmarkBold}}
+\newcommand{\no}{\textcolor{red}{\XSolidBrush}}
 
 \lstset{
   frame=single,
@@ -122,11 +120,7 @@ rule reveal_dh:
 
 \begin{frame}
 \frametitle{IKEv2 Security Model}
-\begin{itemize}
-	\item Dolev-Yao attacker
-\end{itemize}
-\pause
-\bigskip
+
 $\underline{\text{Security properties:}}$              
 \begin{itemize}	
 	\item Consistency
@@ -138,12 +132,16 @@ $\underline{\text{Security properties:}}$
 	\item Agreement \smallskip
 	\pause
 	\begin{itemize}
-		\item Aliveness \textit{of Initiator and of Responder} 
+		\item Aliveness \textit{(of Initiator and of Responder)} 
 		\pause        
-		\item Weak Agreement \textit{of I. and of R.}
+		\item Weak Agreement \textit{(of Initiator and of Responder)}
 		\pause
-		\item Agreement\textit{ of I. and of R.}		
+		\item Agreement \textit{(of Initiator and of Responder)}		
 	\end{itemize}
+\bigskip
+\pause
+$\dots$ against a Dolev-Yao attacker
+
 	
 \end{itemize}
 \end{frame}

@@ -163,20 +163,25 @@ rule reveal_dhq:
 \begin{frame}
 \frametitle{Result}
 \begin{table}[t]
-\resizebox{.7\textwidth}{!}{
-	\begin{tabular}{m{1.6cm}ccccc}
+\resizebox{\textwidth}{!}{
+	\begin{tabular}{m{4cm}ccccc}
 		\toprule
 		& none & I eph. & R eph. & I static & R static \\
 		\midrule
-		Aliveness\_I  & \yes &  \yes  &  \yes  &   \yes   &   \no    \\
-		Aliveness\_R  & \yes &  \yes  &  \yes  &   \yes   &   \no    \\
-		\uchyph=0 Weak Agreement\_I & \yes &  \no   &  \no   &   \yes   &   \no \\
-		\uchyph=0 Weak Agreement\_R & \no &  \no   &  \no   &   \no   &   \no \\
-		Agreement\_I & \yes &  \no   &  \no   &   \yes   &   \no    \\
-		Agreement\_R & \no &  \no   &  \no   &   \no   &   \no    \\
-		Consistency   & \yes &  \yes  &  \yes  &   \yes   &   \no    \\
-		Key secrecy   & \yes &  \no   &  \no   &   \yes   &   \no    \\
-		\uchyph=0 Identity Protection  & \yes &  \no   &  \no   &   \no    &   \yes \\
+		Consistency & \yes & \yes & \yes & \yes & \no \\
+		\hline
+		Key secrecy & \yes & \no & \no & \yes & \no \\
+		\hline
+		\uchyph=0 Identity Protection & \yes & \no & \no & \no & \yes \\
+		\hline
+		Aliveness\_I & \yes & \yes & \yes & \yes & \no \\
+		Aliveness\_R & \yes & \yes & \yes & \yes & \no \\
+		\hline
+		\uchyph=0 Weak Agreement\_I & \yes & \no & \no & \yes & \no \\
+		\uchyph=0 Weak Agreement\_R & \no & \no & \no & \no & \no \\
+		\hline
+		Agreement\_I & \yes & \no & \no & \yes & \no  \\
+		Agreement\_R & \no & \no & \no & \no & \no \\
 		\bottomrule
 	\end{tabular}
 }

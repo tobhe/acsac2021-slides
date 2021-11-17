@@ -82,14 +82,14 @@
 
 \begin{frame}
 \frametitle{The Tamarin Prover}
-$\underline{\text{Idea:}}$  
+$\underline{\text{Idea:}}$
 \begin{itemize}
-	\item symbolic analysis
+	\item symbolic modeling and protocol analysis
 	\pause
 	\item transition system
 	\begin{itemize}
-		\item ``exists-trace'' 
-		\item ``all traces fulfill ... '' 
+		\item ``exists-trace''
+		\item ``all traces fulfill ... ''
 	\end{itemize}
 	\pause
 	\item support of crypto primitives and concepts:
@@ -109,39 +109,44 @@ $\underline{\text{Idea:}}$
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{The Tamarin Prover}
+\frametitle{The Tamarin Language}
+
 \begin{lstlisting}[language=Tamarin]
-rule reveal_dh:
-[ !DHtoReveal($I, k) ] 
---[RevDH($I)]->       
-[ Out(k) ]   
+rule Register_pk:
+  [ Fr(~ltk) ]
+  --[HaveLtk($A)]->
+  [ !Ltk($A, ~ltk), !Pk($A, pk(~ltk)) ]
+
+lemma exists_pk: exists-trace
+  " Ex $A #i.
+    HaveLtk($A) @ #i
+  "
 \end{lstlisting}
+% \begin{lstlisting}[language=Tamarin]
+% rule reveal_dh:
+% [ !DHtoReveal($I, k) ]
+% --[RevDH($I)]->
+% [ Out(k) ]
+% \end{lstlisting}
+
 \end{frame}
 
 \begin{frame}
 \frametitle{IKEv2 Security Model}
 
-$\underline{\text{Security properties:}}$              
+$\underline{\text{Security properties:}}$
 \begin{itemize}	
 	\item Consistency
-	\pause
 	\item Key secrecy
-	\pause
 	\item Identity Protection
-	\pause
 	\item Agreement \smallskip
-	\pause
 	\begin{itemize}
-		\item Aliveness \textit{(of Initiator and of Responder)} 
-		\pause        
+		\item Aliveness \textit{(of Initiator and of Responder)}
 		\item Weak Agreement \textit{(of Initiator and of Responder)}
-		\pause
 		\item Agreement \textit{(of Initiator and of Responder)}		
 	\end{itemize}
 \bigskip
-\pause
 $\dots$ against a Dolev-Yao attacker
-
 	
 \end{itemize}
 \end{frame}
@@ -149,10 +154,16 @@ $\dots$ against a Dolev-Yao attacker
 \begin{frame}[fragile]
 	\frametitle{Modeling PQ-IKEv2}
 \begin{lstlisting}[language=Tamarin]
+rule IKE_INTERMEDIATE_I:
+  ...
+
+rule IKE_INTERMEDIATE_R:
+  ...
+
 rule reveal_dhq:
-[ !DHQtoReveal($I, k) ]
---[RevDHQ($I)]->
-[ Out(k) ]
+  [ !DHQtoReveal($I, k) ]
+  --[RevDHQ($I)]->
+  [ Out(k) ]
 \end{lstlisting}
 	
 \end{frame}
@@ -182,7 +193,7 @@ rule reveal_dhq:
 		\bottomrule
 	\end{tabular}
 }
-\caption[]{\textbf{Implications of key compromise:} Each entry indicates whether the security property of the corresponding row is achieved (\yes{}) or not (\no{}) if the key of the corresponding column is compromised. } 
+\caption[]{\textbf{Implications of key compromise:} Each entry indicates whether the security property of the corresponding row is achieved (\yes{}) or not (\no{}) if the key of the corresponding column is compromised. }
 \end{table}
 \end{frame}
 

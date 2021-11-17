@@ -38,8 +38,8 @@
 \usepackage{bbding}
 \usepackage{threeparttable,tabularx}
 \usepackage{booktabs}
-\newcommand{\yes}{\textcolor{dartmouthgreen}{\CheckmarkBold}}
-\newcommand{\no}{\textcolor{red}{\XSolidBrush}}
+\newcommand{\yes}{\textcolor{dartmouthgreen}{\raisebox{-2pt}{\CheckmarkBold}}}
+\newcommand{\no}{\textcolor{red}{\raisebox{-2pt}{\XSolidBrush}}}
 
 \lstset{
   frame=single,
@@ -82,7 +82,7 @@
 
 \begin{frame}
 \frametitle{The Tamarin Prover}
-$\underline{\text{Idea:}}$
+\underline{\text{Idea:}}
 \begin{itemize}
 	\item symbolic modeling and protocol analysis
 	\pause
@@ -131,10 +131,30 @@ lemma exists_pk: exists-trace
 
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Modeling IKEv2}
+\begin{lstlisting}[language=Tamarin]
+rule IKE_SA_INIT_I:
+  ...
+rule IKE_SA_INIT_R:
+  ...
+rule IKE_AUTH_I:
+  ...
+rule IKE_AUTH_R:
+  ...
+
+lemma exists_session : exists-trace
+  "Ex I R spi # i #j keymat .
+  Completed(spi, I, 'initiator', R, keymat) @ #j &
+  Completed(spi, R, 'responder', I, keymat) @ #i &
+  #i < #j"
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
 \frametitle{IKEv2 Security Model}
 
-$\underline{\text{Security properties:}}$
+\underline{\text{Security properties:}}
 \begin{itemize}	
 	\item Consistency
 	\item Key secrecy
